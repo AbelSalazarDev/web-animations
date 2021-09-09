@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cuban Flag</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <div id="main"></div>
+</body>
+
+<script>
+    const flag_code = {
+        0: {
+            animation: 'square_red'
+        },
+        1: {
+            animation: 'square_blue'
+        },
+        20: {
+            animation: 'square_red'
+        },
+        23: {
+            animation: 'square_blue'
+        },
+        40: {
+            animation: 'square_red'
+        },
+        45: {
+            animation: 'square_white'
+        },
+        60: {
+            animation: 'square_red'
+        },
+        67: {
+            animation: 'square_white'
+        },
+        80: {
+            animation: 'square_red'
+        },
+        82: {
+            animation: 'square_white'
+        },
+        84: {
+            animation: 'square_red'
+        },
+        88: {
+            animation: 'square_blue'
+        },
+        100: {
+            animation: 'square_red'
+        },
+        102: {
+            animation: 'square_white'
+        },
+        104: {
+            animation: 'square_red'
+        },
+        108: {
+            animation: 'square_blue'
+        },
+        120: {
+            animation: 'square_red'
+        },
+        127: {
+            animation: 'square_white'
+        },
+        140: {
+            animation: 'square_red'
+        },
+        145: {
+            animation: 'square_white'
+        },
+        160: {
+            animation: 'square_red'
+        },
+        163: {
+            animation: 'square_blue'
+        },
+        180: {
+            animation: 'square_red'
+        },
+        181: {
+            animation: 'square_blue'
+        },
+
+    }
+    const main = document.getElementById('main');
+    const DELAY_FACTOR = 51;
+    const SQUARES = 200;
+    const ANIMATION_DURATION = 1000;
+
+    let delay_i = 0;
+    let animation = ''
+
+    for (let i = 0; i < SQUARES; i++) {
+        animation = flag_code[i] ? flag_code[i].animation : animation;
+        let square = document.createElement('div');
+        square.id = 'square_' + i;
+        square.className = "squares";
+
+        let delay = delay_i * DELAY_FACTOR;
+        delay_i = delay > ANIMATION_DURATION ? (delay - ANIMATION_DURATION) / DELAY_FACTOR : delay_i + 1;
+
+        square.style.animationDelay = delay + 'ms';
+        square.style.animationName = animation;
+        main.appendChild(square);
+    }
+
+</script>
+
+<style>
+    #boss_main {
+        width: 100vh;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+
+    #main {
+        width: 500px;
+        height: 250px;
+        /* border: solid 1px black; */
+        display: flex;
+        flex-flow: wrap;
+        align-content: flex-start;
+        margin: auto;
+        padding-top: 80px;
+    }
+
+    .squares {
+        width: 25px;
+        height: 25px;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in;
+        border-radius: 1px;
+        border: black 0px;
+        box-sizing: border-box;
+    }
+
+    .squares:hover{
+        border: solid black 1px;
+        z-index: 1000;
+    }
+
+    @keyframes square_red {
+        0%,100% {
+            background-color: rgb(255, 0, 0);
+            transform: scale(2);
+        }
+
+        50% {
+            background-color: rgb(100, 0, 0);
+            transform: scale(1);
+        }
+
+    }
+
+    @keyframes square_blue {
+        0%,100% {
+            background-color: rgb(0, 0, 255);
+            transform: scale(2);
+        }
+
+        50% {
+            background-color: rgb(0, 0, 100);
+            transform: scale(1);
+        }
+
+    }
+
+    @keyframes square_white {
+        0%,100% {
+            background-color: rgb(255, 255, 255);
+            transform: scale(2);
+        }
+
+        50% {
+            background-color: rgb(180, 180, 180);
+            transform: scale(1);
+        }
+    }
+</style>
+
+</html>
